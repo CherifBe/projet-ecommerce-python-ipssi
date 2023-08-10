@@ -1,12 +1,10 @@
 import os
-from dotenv import load_dotenv
 from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.pool import NullPool
 
-load_dotenv()
 
 DATABASE_URL = os.environ['DATABASE_URL']
 print("DATABASE URL: ", DATABASE_URL)

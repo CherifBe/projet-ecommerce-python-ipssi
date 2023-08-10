@@ -1,11 +1,12 @@
-from flask import Flask, render_template
-#from flask_cors import CORS
+from fastapi import FastAPI, Depends
 from infra.db import get_session
+from router.auth_router import router as auth_router # TODO: update that
 
-app = Flask(__name__)
-#cors = CORS(app)
+app = FastAPI()
 
-@app.route("/auth")
+app.include_router(auth_router, prefix="/auth")
+
+@app.get("/")
 def hello_world():
-    return render_template('homepage.html.j2')
+    return "Hello world!"
 

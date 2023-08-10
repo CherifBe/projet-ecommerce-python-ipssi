@@ -9,6 +9,7 @@ from sqlalchemy import text
 from sqlalchemy.orm import relationship
 from infra.db import Base
 
+
 class BaseModeledMixin:
     class Model(BaseModel):
         id: Optional[int]
