@@ -13,3 +13,4 @@ SQLAlchemy==2.0.19
 typing_extensions==4.7.1
 Werkzeug==2.3.6
 aiomysql==0.0.22
+cryptography==36.0.1

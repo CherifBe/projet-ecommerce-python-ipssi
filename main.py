@@ -8,3 +8,4 @@ app = Flask(__name__)
 @app.route("/auth")
 def hello_world():
     return render_template('homepage.html.j2')
+
