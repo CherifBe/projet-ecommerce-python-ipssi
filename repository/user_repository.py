@@ -2,7 +2,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select
 from fastapi import Depends
 from infra.db import get_session
-from model import User
+from model.user_model import User
 
 class UserRepository():
 

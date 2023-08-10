@@ -5,8 +5,7 @@ from sqlalchemy.ext.asyncio import create_async_engine
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.pool import NullPool
 
-
-DATABASE_URL = os.environ['DATABASE_URL']
+DATABASE_URL = os.getenv('DATABASE_URL')
 print("DATABASE URL: ", DATABASE_URL)
 
 engine = create_async_engine(DATABASE_URL, poolclass=NullPool,

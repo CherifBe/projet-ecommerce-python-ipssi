@@ -18,7 +18,7 @@ depends_on = None
 
 def upgrade():
     op.create_table(
-        User,
+        'user',
         sa.Column("id", sa.Integer, primary_key=True, autoincrement=True),
         sa.Column("firstname", sa.String(length=60), nullable=False),
         sa.Column("lastname", sa.String(length=60), nullable=False),
@@ -29,5 +29,5 @@ def upgrade():
 
 def downgrade():
     op.drop_table(
-        User
+        'user'
     )

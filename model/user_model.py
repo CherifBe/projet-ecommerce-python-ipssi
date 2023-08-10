@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime # TODO: FAIRE MODELE PARENT POUR QUE USER ET PRODUCT HERITE DE CELLE CI
 from typing import Dict, List, Optional
 from xmlrpc.client import boolean
 
@@ -27,10 +27,9 @@ class User(BaseModeledMixin, Base):
     __tablename__ = "user"
 
     def __repr__(self):
-        return f"{self.username}>"
+        return f"{self.username}"
 
     class Model(BaseModel):
-        id: Optional[int]
         firstname: str
         lastname: str
         email: str

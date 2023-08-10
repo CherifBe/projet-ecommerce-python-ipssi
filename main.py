@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Depends
+from fastapi import FastAPI
 from infra.db import get_session
 from router.auth_router import router as auth_router # TODO: update that
 
