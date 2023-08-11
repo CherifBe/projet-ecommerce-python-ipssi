@@ -1,60 +1,57 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Ma boutique</title>
-</head>
-<body>
+{% extends "base.html.j2" %}
+
+{% block title %}Ma boutique - Détails du Produit{% endblock %}
+
+{% block content %}
 <h1>Administration</h1>
 
 <form action="/product/" method="post">
-    <input type="text" name="name" placeholder="Nom du produit"/>
-    <input type="text" name="description" placeholder="Description"/>
-    <input type="url" name="image" placeholder="Image"/>
-    <input type="number" name="price" placeholder="Prix"/>
-    <input type="number" name="stock" placeholder="Stock" />
-    <button type="submit">Continue</button>
+    <input type="text" name="name" class="form-control" placeholder="Nom du produit"/>
+    <input type="text" name="description" class="form-control" placeholder="Description"/>
+    <input type="url" name="image" class="form-control" placeholder="Image"/>
+    <input type="number" name="price" class="form-control" placeholder="Prix"/>
+    <input type="number" name="stock" class="form-control" placeholder="Stock" />
+    <button type="submit" class="btn btn-primary">Continue</button>
 </form>
 
 
 <div class="products">
 {% if products %}
-    <ul>
+    <ul class="list-group">
     {% for product in products %}
-    <li class="product">
+    <li class="list-group-item">
         <h2>{{ product.name }}</h2>
         <img src="{{ product.image }}" alt="{{ product.name }}">
         <p>{{ product.price }}$</p>
         <a href="{{ url_for('update_product_page', product_id=product.id) }}">
-            <button>Modifier le produit</button>
+            <button class="btn btn-warning">Modifier le produit</button>
         </a>
         <form action="{{ url_for('delete_product', product_id=product.id) }}" method="post">
-            <button type="submit">Supprimer le produit</button>
+            <button type="submit" class="btn btn-danger">Supprimer le produit</button>
         </form>
     </li>
     {% endfor %}
     </ul>
 {% else %}
-    <div>Aucun produit pour le moment</div>
+    <div class="alert alert-info">Aucun produit pour le moment</div>
 {% endif %}
 </div>
 
 <div class="users">
 {% if users %}
-    <ul>
+    <ul class="list-group">
         {% for user in users %}
-        <li class="user">
+        <li class="list-group-item">
             <p>{{ user.firstname }} {{ user.lastname }}</p>
             <form action="{{ url_for('delete_user', user_id=user.id) }}" method="post">
-                <button type="submit">Supprimer l'utilisateur</button>
+                <button type="submit" class="btn btn-danger">Supprimer l'utilisateur</button>
             </form>
         </li>
         {% endfor %}
     </ul>
 {% else %}
-    <div>Aucun utilisateur en base de données</div>
+    <div class="alert alert-info">Aucun utilisateur en base de données</div>
 {% endif %}
 </div>
 
-</body>
-</html>
+{% endblock %}
