@@ -20,3 +20,10 @@ class ProductController():
     
     async def get_product_by_id(self, product_id):
         return await self.product_repo.get_product_by_id(product_id)
+    
+    async def delete_product(self, product_id):
+        return await self.product_repo.delete_product_by_id(product_id)
+    
+    async def update_product(self, product_id, updated_product: Product.Model):
+        await self.product_repo.update_product(product_id, updated_product)
+        return updated_product

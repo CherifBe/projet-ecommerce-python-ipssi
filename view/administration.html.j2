@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ma boutique</title>
+</head>
+<body>
+<h1>Administration</h1>
+
+<form action="/product/" method="post">
+    <input type="text" name="name" placeholder="Nom du produit"/>
+    <input type="text" name="description" placeholder="Description"/>
+    <input type="url" name="image" placeholder="Image"/>
+    <input type="number" name="price" placeholder="Prix"/>
+    <input type="number" name="stock" placeholder="Stock" />
+    <button type="submit">Continue</button>
+</form>
+
+
+<div class="products">
+{% if products %}
+    <ul>
+    {% for product in products %}
+    <li class="product">
+        <h2>{{ product.name }}</h2>
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+        <p>{{ product.price }}$</p>
+        <a href="{{ url_for('update_product_page', product_id=product.id) }}">
+            <button>Modifier le produit</button>
+        </a>
+        <form action="{{ url_for('delete_product', product_id=product.id) }}" method="post">
+            <button type="submit">Supprimer le produit</button>
+        </form>
+    </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <div>Aucun produit pour le moment</div>
+{% endif %}
+</div>
+
+<div class="users">
+{% if users %}
+    <ul>
+        {% for user in users %}
+        <li class="user">
+            <p>{{ user.firstname }} {{ user.lastname }}</p>
+            <form action="{{ url_for('delete_user', user_id=user.id) }}" method="post">
+                <button type="submit">Supprimer l'utilisateur</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <div>Aucun utilisateur en base de données</div>
+{% endif %}
+</div>
+
+</body>
+</html>

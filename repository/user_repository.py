@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, delete
 from fastapi import Depends
 from infra.db import get_session
 from model.user_model import User
@@ -44,3 +44,9 @@ class UserRepository():
         user.password = updated_user.password
         await self.db.commit()
         return user
+    
+    async def delete_user_by_id(self, id):
+        user = await self.get_user_by_id(id)
+        await self.db.delete(user)
+        await self.db.commit()
+        return True

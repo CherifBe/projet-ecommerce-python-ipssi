@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ma boutique</title>
+</head>
+<body>
+
+{% if product %}
+
+<h2>Modifier</h2>
+
+<form action="{{ url_for('update_product', product_id=product.id) }}" method="post">
+    <input type="text" name="name" placeholder="Nom du produit" value="{{product.name}}" />
+    <input type="text" name="description" placeholder="Description" value="{{product.description}}" />
+    <input type="url" name="image" placeholder="Image" value="{{product.image}}" />
+    <input type="number" name="price" placeholder="Prix" value="{{product.price}}" />
+    <input type="number" name="stock" placeholder="Stock" value="{{product.stock}}" />
+    <button type="submit">Continue</button>
+</form>
+
+{% else %}
+
+<div>Ce produit n'existe pas</div>
+
+{% endif %}
+
+</body>
+</html>
