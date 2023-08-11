@@ -1,34 +1,26 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Ma boutique</title>
-</head>
-<body>
-<form method="post">
-    <input type="text" name="name" placeholder="Nom du produit"/>
-    <input type="text" name="description" placeholder="Description"/>
-    <input type="url" name="image" placeholder="Image"/>
-    <input type="number" name="price" placeholder="Prix"/>
-    <input type="number" name="stock" placeholder="Stock" />
-    <button type="submit">Continue</button>
-</form>
+{% extends "base.html.j2" %}
+{% block title %}Ma boutique{% endblock %}
 
+{% block content %}
 
-<div>
-{% if products %}
-    {% for product in products %}
-    <div class="product">
-        <h2>{{ product.name }}</h2>
-        <img src="{{ product.image }}" alt="{{ product.name }}">
-        <p>{{ product.price }}$</p>
-        <a href="/product/{{ product.id }}"><button>Détails</button></a>
-    </div>
-    {% endfor %}
-{% else %}
-    <div>Aucun produit pour le moment</div>
-{% endif %}
+{% include "product_form.html.j2" %}
+
+<div class="row">
+    {% if products %}
+        {% for product in products %}
+        <div class="col-md-2 mx-auto my-5">
+            <div class="card">
+                <div class="card-body">
+                    <h2 class="card-title">{{ product.name }}</h2>
+                    <img class="card-img-top" src="{{ product.image }}" alt="{{ product.name }}">
+                    <p class="card-text">${{ product.price }}</p>
+                    <a href="/product/{{ product.id }}" class="btn btn-primary">Détails</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div>Aucun produit pour le moment</div>
+    {% endif %}
 </div>
-
-</body>
-</html>
+{% endblock %}
