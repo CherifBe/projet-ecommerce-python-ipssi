@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ma boutique</title>
+</head>
+<body>
+
+<div>
+{% if product %}
+    <div class="product">
+        <h2>{{ product.name }}</h2>
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+        <p>{{ product.description }}</p>
+        <p>{{ product.price }}</p>
+        <p>{{ product.stock }}</p>
+    </div>
+{% else %}
+    <div>Ce produit n'existe pas</div>
+{% endif %}
+</div>
+
+</body>
+</html>

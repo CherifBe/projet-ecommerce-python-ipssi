@@ -31,5 +31,3 @@ class AuthController():
         if not verify_password(password, user.password):
             return False
         return user
-    
-

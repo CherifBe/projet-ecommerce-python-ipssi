@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ma boutique</title>
+</head>
+<body>
+<form method="post">
+    <input type="text" name="name" placeholder="Nom du produit"/>
+    <input type="text" name="description" placeholder="Description"/>
+    <input type="url" name="image" placeholder="Image"/>
+    <input type="number" name="price" placeholder="Prix"/>
+    <input type="number" name="stock" placeholder="Stock" />
+    <button type="submit">Continue</button>
+</form>
+
+
+<div>
+{% if products %}
+    {% for product in products %}
+    <div class="product">
+        <h2>{{ product.name }}</h2>
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+        <p>{{ product.price }}$</p>
+        <a href="/product/{{ product.id }}"><button>Détails</button></a>
+    </div>
+    {% endfor %}
+{% else %}
+    <div>Aucun produit pour le moment</div>
+{% endif %}
+</div>
+
+</body>
+</html>
