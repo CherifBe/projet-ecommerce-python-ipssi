@@ -1,5 +1,5 @@
 from sqlalchemy.ext.asyncio import AsyncSession
-from sqlalchemy import select
+from sqlalchemy import select, delete
 from fastapi import Depends
 from infra.db import get_session
 from model.product_model import Product
@@ -41,3 +41,9 @@ class ProductRepository():
         product.stock = updated_product.stock
         await self.db.commit()
         return product
+    
+    async def delete_product_by_id(self, id):
+        product = await self.get_product_by_id(id)
+        await self.db.delete(product)
+        await self.db.commit()
+        return True

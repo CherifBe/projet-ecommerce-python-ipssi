@@ -31,3 +31,9 @@ class AuthController():
         if not verify_password(password, user.password):
             return False
         return user
+    
+    async def get_users(self):
+        return await self.user_repo.get_all()
+    
+    async def delete_user(self, user_id):
+        return await self.user_repo.delete_user_by_id(user_id)

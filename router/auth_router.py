@@ -25,3 +25,8 @@ async def display_form_login(request: Request):
 async def login_user(email: str = Form(), password: str = Form(), db: AsyncSession = Depends(get_session)):
     auth_controller = AuthController(db)
     return await auth_controller.login_user(email, password)
+
+@router.post('/delete/{user_id}', tags=["delete_user"])
+async def delete_user(user_id, db: AsyncSession = Depends(get_session)):
+    auth_controller = AuthController(db)
+    return await auth_controller.delete_user(user_id)

@@ -21,4 +21,29 @@ async def create_product(new_product: Product.Model = Depends(Product.Model.as_f
 @router.get("/{product_id}")
 async def display_details(product_id, request: Request, db: AsyncSession = Depends(get_session)):
     product_controller = ProductController(db)
-    return views.TemplateResponse('product.html.j2', context={'request': request, 'product': await product_controller.get_product_by_id(product_id)})
+    return views.TemplateResponse(
+        'product.html.j2', 
+        context={
+            'request': request, 
+            'product': await product_controller.get_product_by_id(product_id)
+            })
+
+@router.post("/delete/{product_id}", tags=["delete_product"])
+async def delete_product(product_id, db: AsyncSession = Depends(get_session)):
+    product_controller = ProductController(db)
+    return await product_controller.delete_product(product_id)
+
+@router.get("/update/{product_id}", tags=["update_product_page"])
+async def update_product_page(product_id, request: Request, db: AsyncSession = Depends(get_session)):
+    product_controller = ProductController(db)
+    return views.TemplateResponse(
+        'update_product.html.j2',
+        context= {
+        'request': request,
+        'product': await product_controller.get_product_by_id(product_id)
+        })
+
+@router.post("/update/{product_id}", tags=["update_product"])
+async def update_product(product_id, updated_product: Product.Model = Depends(Product.Model.as_form), db: AsyncSession = Depends(get_session)):
+    product_controller = ProductController(db)
+    return await product_controller.update_product(product_id, updated_product)
