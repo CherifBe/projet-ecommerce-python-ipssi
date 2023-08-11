@@ -14,7 +14,7 @@ services:
     build: .
     volumes:
       - ./:/usr/src/application:ro
-    command: flask --app main run --reload
+    command: uvicorn main:app --reload
     environment:
       MYSQL_HOST: 'db'
       MYSQL_PORT: '3306'

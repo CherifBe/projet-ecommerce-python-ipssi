@@ -13,9 +13,10 @@ async def display_form_signup(request: Request):
     return views.TemplateResponse('form_signup.html.j2', context={'request': request})
 
 @router.post("/")
-async def create_user(new_user: User.Model = Depends(User.Model.as_form), db: AsyncSession = Depends(get_session)) -> User.Model:
+async def create_user(request: Request, new_user: User.Model = Depends(User.Model.as_form), db: AsyncSession = Depends(get_session)) -> User.Model:
     auth_controller = AuthController(db)
-    return await auth_controller.create_user(new_user)
+    await auth_controller.create_user(new_user)
+    return views.TemplateResponse('form_login.html.j2', context={'request': request})
 
 @router.get("/login")
 async def display_form_login(request: Request):
