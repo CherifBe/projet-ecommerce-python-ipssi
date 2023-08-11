@@ -8,6 +8,8 @@ from sqlalchemy.ext.mutable import MutableDict
 from sqlalchemy import text
 from sqlalchemy.orm import relationship
 from infra.db import Base
+from fastapi import Form
+from typing import Type
 
 
 class BaseModeledMixin:
@@ -37,6 +39,21 @@ class User(BaseModeledMixin, Base):
 
         class Config:
             orm_mode = True
+        
+        @classmethod
+        def as_form(
+            cls: Type[BaseModel],
+            firstname: str = Form(), 
+            lastname: str = Form(), 
+            email: str = Form(),
+            password: str = Form()):
+            return cls(
+                firstname = firstname,
+                lastname = lastname,
+                email = email,
+                password = password
+            )
+
 
     id = sa.Column(sa.Integer, primary_key=True, autoincrement=True)
     firstname = sa.Column(sa.String(length=60), nullable=False)
