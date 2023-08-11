@@ -1,24 +1,21 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Ma boutique</title>
-</head>
-<body>
+{% extends "base.html.j2" %}
 
+{% block title %}Ma boutique - Détails du Produit{% endblock %}
+
+{% block content %}
 <div>
-{% if product %}
-    <div class="product">
-        <h2>{{ product.name }}</h2>
-        <img src="{{ product.image }}" alt="{{ product.name }}">
-        <p>{{ product.description }}</p>
-        <p>{{ product.price }}</p>
-        <p>{{ product.stock }}</p>
-    </div>
-{% else %}
-    <div>Ce produit n'existe pas</div>
-{% endif %}
+    {% if product %}
+        <div class="card">
+            <div class="card-body">
+                <h2 class="card-title">{{ product.name }}</h2>
+                <img class="card-img-top" src="{{ product.image }}" alt="{{ product.name }}">
+                <p class="card-text">{{ product.description }}</p>
+                <p class="card-text">${{ product.price }}</p>
+                <p class="card-text">{{ product.stock }}</p>
+            </div>
+        </div>
+    {% else %}
+        <div>Ce produit n'existe pas</div>
+    {% endif %}
 </div>
-
-</body>
-</html>
+{% endblock %}

@@ -1,14 +1,18 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Authentication - Login</title>
-</head>
-<body>
-<form method="post">
-    <input type="text" name="email"/>
-    <input type="text" name="password"/>
-    <button type="submit">Continue</button>
-</form>
-</body>
-</html>
+<!-- login.html.j2 -->
+{% extends "base.html.j2" %}
+
+{% block title %}Authentication - Login{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <form method="post">
+        <div class="mb-3">
+            <input type="text" class="form-control" name="email" placeholder="Email">
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Se connecter</button>
+    </form>
+</div>
+{% endblock %}

@@ -14,7 +14,7 @@ async def display_products(request: Request, db: AsyncSession = Depends(get_sess
     return views.TemplateResponse('products.html.j2', context={'request': request, 'products': await product_controller.get_products()})
 
 @router.post("/")
-async def create_product(new_product: Product.Model = Depends(Product.Model.as_form), db: AsyncSession = Depends(get_session)) -> Product.Model:
+async def create_product(request: Request, new_product: Product.Model = Depends(Product.Model.as_form), db: AsyncSession = Depends(get_session)) -> Product.Model:
     product_controller = ProductController(db)
     return await product_controller.create_product(new_product)
 

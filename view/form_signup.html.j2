@@ -1,18 +1,24 @@
-<!DOCTYPE html>
-<html lang="fr">
-<head>
-    <meta charset="UTF-8">
-    <title>Authentication - Signup</title>
-</head>
-<body>
-<form method="post">
-    <input type="text" name="firstname"/>
-    <input type="text" name="lastname"/>
-    <input type="text" name="email"/>
-    <input type="text" name="password"/>
-    <button type="submit">Continue</button>
-</form>
+<!-- signup.html.j2 -->
+{% extends "base.html.j2" %}
 
+{% block title %}Authentication - Signup{% endblock %}
 
-</body>
-</html>
+{% block content %}
+<div class="container mt-5">
+    <form method="post">
+        <div class="mb-3">
+            <input type="text" class="form-control" name="firstname" placeholder="First Name">
+        </div>
+        <div class="mb-3">
+            <input type="text" class="form-control" name="lastname" placeholder="Last Name">
+        </div>
+        <div class="mb-3">
+            <input type="email" class="form-control" name="email" placeholder="Email">
+        </div>
+        <div class="mb-3">
+            <input type="password" class="form-control" name="password" placeholder="Password">
+        </div>
+        <button type="submit" class="btn btn-primary">Valider</button>
+    </form>
+</div>
+{% endblock %}
