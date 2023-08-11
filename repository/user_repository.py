@@ -24,6 +24,11 @@ class UserRepository():
         query = select(User).where(User.id == id)
         result = await self.db.execute(query)
         return result.scalars().first()
+    
+    async def get_user_by_email(self, email):
+        query = select(User).where(User.email == email)
+        result = await self.db.execute(query)
+        return result.scalars().first()
 
     async def get_all(self):
         query = select(User)

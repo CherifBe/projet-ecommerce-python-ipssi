@@ -29,7 +29,7 @@ class User(BaseModeledMixin, Base):
     __tablename__ = "user"
 
     def __repr__(self):
-        return f"{self.username}"
+        return f"{self.firstname}"
 
     class Model(BaseModel):
         firstname: str
